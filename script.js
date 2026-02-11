@@ -83,8 +83,9 @@ function displayAffirmation() {
     const broSuffix = document.getElementById('broSuffix');
     const affirmationBox = document.getElementById('affirmationBox');
 
-    // Hide suffix immediately using class
-    broSuffix.classList.remove('show');
+    // Hide suffix immediately
+    broSuffix.style.opacity = '0';
+    broSuffix.style.visibility = 'hidden';
 
     // Add fade out effect
     affirmationBox.style.opacity = '0';
@@ -101,13 +102,21 @@ function displayAffirmation() {
 
         // Fade in the bro suffix after a delay
         setTimeout(() => {
-            broSuffix.classList.add('show');
+            broSuffix.style.visibility = 'visible';
+            broSuffix.style.opacity = '1';
         }, 1500);
     }, 300);
 }
 
 // Add CSS transition for opacity
 document.getElementById('affirmationBox').style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+// Initialize broSuffix to be hidden on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const broSuffix = document.getElementById('broSuffix');
+    broSuffix.style.opacity = '0';
+    broSuffix.style.visibility = 'hidden';
+});
 
 // Event listener for button
 document.getElementById('newAffirmation').addEventListener('click', displayAffirmation);
